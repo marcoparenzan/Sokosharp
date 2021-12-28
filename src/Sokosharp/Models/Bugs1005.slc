@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SokobanLevels xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="SokobanLev.xsd">
+<SokobanLevels xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Title>Bugs1005 collections</Title>
   <Description>
 Hello to all Sokoban Lovers.I'm an avid player of this mind games.to

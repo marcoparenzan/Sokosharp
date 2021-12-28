@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text.Json;
+using System.Xml.Serialization;
 
 namespace SokoSharp.Models
 {
@@ -30,9 +29,9 @@ namespace SokoSharp.Models
             var stage = new StageResources();
 
             // https://www.sourcecode.se/sokoban/levels
-            var stream = typeof(Stage).Assembly.GetManifestResourceStream(typeof(StageResources), "Bugs1005.slc");
-            var serializer = new System.Xml.Serialization.XmlSerializer(typeof(SokobanLevels));
-            var levels = (SokobanLevels)serializer.Deserialize(stream);
+            var stream = typeof(Stage).Assembly.GetManifestResourceStream("Sokosharp.Models.Bugs1005.slc");
+            var serializers = XmlSerializer.FromTypes(new[] { typeof(SokobanLevels) });
+            var levels = (SokobanLevels)serializers[0].Deserialize(stream);
             
             var random = new Random();
             stageNumber = stageNumber ?? random.Next(0, levels.LevelCollection.Level.Count);
@@ -60,7 +59,7 @@ namespace SokoSharp.Models
                 }
             }
 
-            var setStream = typeof(StageResources).Assembly.GetManifestResourceStream(typeof(StageResources), $"TileMap.png");
+            var setStream = typeof(StageResources).Assembly.GetManifestResourceStream("Sokosharp.Models.TileMap.png");
             stage.Set = (Bitmap)Image.FromStream(setStream);
             stage.SetTilesPerRow = 5;
             stage.TileSize = (24, 16);
